@@ -193,7 +193,7 @@ function M.setup(config)
     }),
 
     fg = themes({
-      dark = "#c9d1d9",
+      dark = "#f0f6fc",
       dimmed = "#adbac7",
       light = "#24292e",
       dark_default = "#c9d1d9",
