@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://imgur.com/i3Ix00H.png" alt="github-nvim-theme" />
+  <img src="https://imgur.com/OLRFrjD.png" alt="github-nvim-theme" />
 </p>
 
 ### Status
@@ -105,7 +105,7 @@ let g:github_sidebars = ["qf", "vista_kind", "terminal", "packer"]
 
 " Change the "hint" color to the "orange" color, and make the "error" color bright red
 let g:github_colors = {
-  \ 'hint: 'orange',
+  \ 'hint': 'orange',
   \ 'error': '#ff0000'
 \ }
 
@@ -151,6 +151,7 @@ set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{25
 - Font: [Ubuntu Mono](https://design.ubuntu.com/font/)
 - Terminal: [kitty](https://sw.kovidgoyal.net/kitty)
 - Icon: [circles.nvim](https://github.com/projekt0n/circles.nvim)
+- StatusLine: **Default**. [dotfiles/nvim/.config/nvim/lua/options.lua#L19-L30](https://github.com/ful1e5/dotfiles/blob/a2777f85b104622dd82f4adfc6ad032e3ff074bf/nvim/.config/nvim/lua/options.lua#L19-L30)
 - dotfiles: [dotfiles](https://github.com/ful1e5/dotfiles)
 
 ### Theme Styles
@@ -324,20 +325,15 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/SuPtKdk.png" alt="github_minimal" />
+  <img src="https://imgur.com/TyaLR4n.png" alt="github_minimal" />
 </p>
 
 ### Telescope
 
 <p align="center">
-  <img src="https://imgur.com/WBRiOwx.png" alt="github_telescope" />
+  <img src="https://imgur.com/vVFjJad.png" alt="github_telescope" />
 </p>
 
 ## Contributing
 
 Check [CONTRIBUTING.md](./CONTRIBUTING.md), any suggestions for features and contributions to the continuing code masterelopment can be made via the issue tracker or code contributions via a `Fork` & `Pull requests`.
-
-<!-- Ninja  -->
-<p align="center">
-  <h3 align="center">|| || ||</h1>
-</p>

@@ -1,13 +1,13 @@
 local util = require("github-theme.util")
 local colors = require("github-theme.colors")
-local configModule = require("github-theme.config")
+local config_module = require("github-theme.config")
 
 local M = {}
 
 ---@param config github-theme.Config
 ---@return github-theme.Theme
 function M.setup(config)
-  config = config or configModule.config
+  config = config or config_module.config
 
   ---@class github-theme.Theme
   local theme = {}
@@ -19,14 +19,14 @@ function M.setup(config)
     ColorColumn = {bg = c.bg_visual}, -- used for the columns set with 'colorcolumn'
     Conceal = {fg = c.fg_gutter}, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor = {fg = c.bg, bg = c.fg}, -- character under the cursor
-    lCursor = {fg = c.bg, bg = c.fg}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM = {fg = c.bg, bg = c.fg}, -- like Cursor, but used when in IME mode |CursorIM|
+    lCursor = {link = "Cursor"}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM = {link = "Cursor"}, -- like Cursor, but used when in IME mode |CursorIM|
     CursorColumn = {bg = c.bg_highlight}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine = {bg = c.bg_highlight}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine = {link = "CursorColumn"}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory = {fg = c.blue}, -- directory names (and other special names in listings)
-    DiffAdd = {bg = c.diff.add}, -- diff mode: Added line |diff.txt|
-    DiffChange = {bg = c.diff.change}, -- diff mode: Changed line |diff.txt|
-    DiffDelete = {bg = c.diff.delete}, -- diff mode: Deleted line |diff.txt|
+    DiffAdd = {fg = c.diff.add_fg, bg = c.diff.add}, -- diff mode: Added line |diff.txt|
+    DiffChange = {fg = c.diff.change_fg, bg = c.diff.change}, -- diff mode: Changed line |diff.txt|
+    DiffDelete = {fg = c.diff.delete_fg, bg = c.diff.delete}, -- diff mode: Deleted line |diff.txt|
     DiffText = {fg = c.fg_gutter}, -- diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer = {fg = c.eob}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- TermCursor  = { }, -- cursor in a focused terminal
@@ -34,7 +34,7 @@ function M.setup(config)
     ErrorMsg = {fg = c.error}, -- error messages on the command line
     VertSplit = {fg = c.bg_visual, bg = c.bg}, -- the column separating vertically split windows
     Folded = {fg = c.fg_folded, bg = c.bg_folded}, -- line used for closed folds
-    FoldColumn = {fg = c.fg_folded, bg = c.bg_folded}, -- 'foldcolumn'
+    FoldColumn = {link = "Folded"}, -- 'foldcolumn'
     SignColumn = {bg = config.transparent and c.none or c.bg, fg = c.fg_gutter}, -- column where |signs| are displayed
     SignColumnSB = {bg = c.bg_sidebar, fg = c.fg_gutter}, -- column where |signs| are displayed
     Substitute = {bg = c.red, fg = c.black}, -- |:substitute| replacement text highlighting
@@ -45,7 +45,7 @@ function M.setup(config)
     MsgArea = {fg = c.fg, style = config.msg_area_style}, -- Area for messages and cmdline
     -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg = {fg = c.blue}, -- |more-prompt|
-    NonText = {fg = c.eof}, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    NonText = {fg = c.eob}, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal = {fg = c.fg, bg = config.transparent and c.none or c.bg}, -- normal text
     NormalNC = {fg = c.fg, bg = config.transparent and c.none or c.bg}, -- normal text in non-current windows
     NormalSB = {fg = c.fg, bg = c.bg_sidebar}, -- normal text in non-current windows
@@ -64,8 +64,8 @@ function M.setup(config)
     SpellCap = {sp = c.warning, style = "undercurl"}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = {sp = c.info, style = "undercurl"}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = {sp = c.hint, style = "undercurl"}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    StatusLine = {fg = c.bg, bg = c.bg_statusline}, -- status line of current window
-    StatusLineNC = {fg = c.fg_nc_statusline, bg = c.bg}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLine = {fg = c.fg_statusline, bg = c.bg_statusline}, -- status line of current window
+    StatusLineNC = {fg = c.fg_nc_statusline, bg = c.bg_nc_statusline}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine = {bg = c.bg, fg = c.fg}, -- tab pages line, not active tab page label
     TabLineFill = {bg = c.bg2}, -- tab pages line, where there are no labels
     TabLineSel = {fg = c.pmenu.select, bg = c.blue}, -- tab pages line, active tab page label
@@ -267,7 +267,7 @@ function M.setup(config)
     javascriptTSParameter = {fg = c.syntax.param},
     javascriptTSVariable = {fg = c.syntax.variable},
     javascriptTSPunctDelimiter = {fg = c.fg},
-    javascriptTSStringRegex = {fg = c.string},
+    javascriptTSStringRegex = {fg = c.syntax.string},
     javascriptTSConstructor = {fg = c.syntax.func},
     javascriptTSProperty = {fg = c.syntax.func},
     regexTSStringEscape = {fg = c.syntax.keyword},
@@ -350,9 +350,9 @@ function M.setup(config)
     illuminatedCurWord = {bg = c.lsp.referenceText},
 
     -- diff
-    diffAdded = {bg = c.diff.add, fg = c.diff.add_fg},
-    diffRemoved = {bg = c.diff.delete, fg = c.diff.delete_fg},
-    diffChanged = {bg = c.diff.change, fg = c.diff.change_fg},
+    diffAdded = {link = "DiffAdd"},
+    diffChanged = {link = "DiffChange"},
+    diffRemoved = {link = "DiffDelete"},
     diffOldFile = {fg = c.yellow},
     diffNewFile = {fg = c.orange},
     diffFile = {fg = c.blue},
@@ -365,8 +365,8 @@ function M.setup(config)
     NeogitHunkHeader = {bg = c.bg_highlight, fg = c.fg},
     NeogitHunkHeaderHighlight = {bg = c.bg_highlight, fg = c.blue, style = "italic"},
     NeogitDiffContextHighlight = {bg = c.bg, fg = c.fg},
-    NeogitDiffDeleteHighlight = {fg = c.diff.delete_fg, bg = c.diff.delete},
-    NeogitDiffAddHighlight = {fg = c.diff.add_fg, bg = c.diff.add},
+    NeogitDiffAddHighlight = {link = "DiffAdd"},
+    NeogitDiffDeleteHighlight = {link = "DiffDelete"},
 
     -- GitGutter
     GitGutterAdd = {fg = c.git_signs.add}, -- diff mode: Added line |diff.txt|
@@ -484,6 +484,43 @@ function M.setup(config)
     -- Cmp
     CmpDocumentation = {links = "NormalFloat"},
     CmpDocumentationBorder = {links = "FloatBorder"},
+    CmpItemAbbrDeprecated = {fg = c.syntax.comment, style = "strikethrough"},
+    CmpItemAbbrMatch = {fg = c.blue},
+    CmpItemAbbrMatchFuzzy = {link = "CmpItemAbbrMatch"},
+
+    -- Cmp Item Kind
+    CmpItemKindColorDefault = {fg = c.bright_red},
+    CmpItemKindPropertyDefault = {fg = c.syntax.func},
+    CmpItemKindSnippetDefault = {fg = c.bright_yellow},
+
+    CmpItemKindVariableDefault = {fg = c.syntax.variable},
+    CmpItemKindClassDefault = {link = "CmpItemKindVariableDefault"},
+    CmpItemKindEnumDefault = {link = "CmpItemKindVariableDefault"},
+    CmpItemKindInterfaceDefault = {link = "CmpItemKindVariableDefault"},
+    CmpItemKindTextDefault = {link = "CmpItemKindVariableDefault"},
+
+    CmpItemKindKeywordDefault = {fg = c.syntax.keyword},
+    CmpItemKindFieldDefault = {link = "CmpItemKindKeywordDefault"},
+    CmpItemKindUnitDefault = {link = "CmpItemKindKeywordDefault"},
+    CmpItemKindValueDefault = {link = "CmpItemKindKeywordDefault"},
+
+    CmpItemKindFileDefault = {fg = c.orange},
+    CmpItemKindFolderDefault = {link = "CmpItemKindFileDefault"},
+
+    CmpItemKindFunctionDefault = {fg = c.syntax.func},
+    CmpItemKindConstructorDefault = {link = "CmpItemKindFunctionDefault"},
+    CmpItemKindEventDefault = {link = "CmpItemKindFunctionDefault"},
+    CmpItemKindMethodDefault = {link = "CmpItemKindFunctionDefault"},
+
+    CmpItemKindOperatorDefault = {fg = c.syntax.operator},
+    CmpItemKindEnumMemberDefault = {link = "CmpItemKindOperatorDefault"},
+    CmpItemKindReferenceDefault = {link = "CmpItemKindOperatorDefault"},
+    CmpItemKindTypeParameter = {link = "CmpItemKindOperatorDefault"},
+
+    CmpItemKindConstantDefault = {fg = c.syntax.constant},
+    CmpItemKindModuleDefault = {link = "CmpItemKindConstantDefault"},
+    CmpItemKindStructDefault = {link = "CmpItemKindConstantDefault"},
+    CmpItemKindTypeParameterDefault = {link = "CmpItemKindConstantDefault"},
 
     -- nvim-notify
     NotifyERRORTitle = {fg = util.darken(c.error, 0.9)},

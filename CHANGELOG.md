@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [v0.0.3] - 09 Dec 2021
+
 ### Added
 
 - Github `dark_default` theme added #15 #16 #24
@@ -31,10 +33,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: set `vim.o.background` with config module (re-patch #60 #116)
 - enhance: support colorschemes with fzf `Colors` command
 - enhance: unlink `NvimTreeGitIgnored` from `Comment`
-- fix: `vim.o.background` setting in config module
-- fix: assign `user_config` value to `vim.g` global variables
 - refactor: global variable prefix store in `key_prefix` variable
 - refactor: pass common config in `extra` module
+- enhance: `StatusLine` foreground & `StatusLineNC` background colors are customizable ( related to #11 )
+- feat: vscode like lspkind highlighting inside `nvim-cmp` #137
+- enhance: highlight all lspkind list in `nvim-cmp` #137
+- Link common highlights for `diff` group
 
 ### Fixes
 
@@ -60,6 +64,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - make `CursorLine` and `CursorColumn` background highlight more visible #109
 - `qfLineNr` & `QuickFixLine` colors updated #119
 - LuaDocs: duplicate warning fixed
+- missing `'` in vim config (README.md) fixed #134
+- typo inisde `theme.lua`
+- missing alias fixed inside `colors.lua`
+- Fix `vim.o.background` setting in config module
+- Fix assign `user_config` value to `vim.g` global variables
 
 ## [v0.0.2] - 15 Sep 2021
 
@@ -107,6 +116,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release 🎊
 
-[unreleased]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.2...main
+[unreleased]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.3...main
+[v0.0.3]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.3...v0.0.2
 [v0.0.2]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.2...v0.0.1
 [v0.0.1]: https://github.com/projekt0n/github-nvim-theme/tree/v0.0.1
