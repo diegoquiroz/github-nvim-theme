@@ -24,26 +24,27 @@ Extra color configs for **kitty**, **iTerm**, **Konsole**, **tmux** and **Alacri
 
 ## Plugin Support
 
-- [ALE](https://github.com/dense-analysis/ale)
+- [Builtin lsp diagnostics](https://neovim.io/doc/user/lsp.html)
+- [ale](https://github.com/dense-analysis/ale)
 - [circles.nvim](https://github.com/projekt0n/circles.nvim)
+- [coc.nvim](https://github.com/neoclide/coc.nvim)
 - [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
-- [Git Signs](https://github.com/lewis6991/gitsigns.nvim)
-- [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [LSP Diagnostics](https://neovim.io/doc/user/lsp.html)
-- [LSP Trouble](https://github.com/folke/lsp-trouble.nvim)
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [lsp-trouble.nvim](https://github.com/folke/lsp-trouble.nvim)
 - [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
-- [Lualine](https://github.com/hoob3rt/lualine.nvim)
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [neogit](https://github.com/TimUntersberger/neogit)
 - [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [nvim-compe](https://github.com/hrsh7th/nvim-compe)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [Neogit](https://github.com/TimUntersberger/neogit)
-- [NvimTree](https://github.com/kyazdani42/nvim-tree.lua)
-- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-- [TreeSitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
-- [which-key.nvim](https://github.com/folke/which-key.nvim/)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+- [which-key.nvim](https://github.com/folke/which-key.nvim)
 
 ## Requirements
 
@@ -81,21 +82,21 @@ require('github-theme').setup()
 
 ## Configuration
 
-| Option                   | Default  | Description                                                                                                                                                     |
-| ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| theme_style              | `dark`   | Set theme variant (options: `dark`/`dark_default`/`dimmed`/`light`/`light_default`)                                                                             |
-| comment_style            | `italic` | Highlight style for comments (check `:help highlight-args` for options)                                                                                         |
-| keyword_style            | `italic` | Highlight style for keywords (check `:help highlight-args` for options)                                                                                         |
-| function_style           | `NONE`   | Highlight style for functions (check `:help highlight-args` for options)                                                                                        |
-| variable_style           | `NONE`   | Highlight style for variables and identifiers (check `:help highlight-args` for options)                                                                        |
-| msg_area_style           | `NONE`   | Highlight style for messages and cmdline (check `:help highlight-args` for options)                                                                             |
-| transparent              | `false`  | Enable this to disable setting the background color                                                                                                             |
-| hide_end_of_buffer       | `true`   | Enabling this option, will hide filler lines (~) after the end of the buffer                                                                                    |
-| hide_inactive_statusline | `true`   | Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**. |
-| sidebars                 | `{}`     | Set a darker background on sidebar-like windows. For example: `{"qf", "vista_kind", "terminal", "packer"}`                                                      |
-| dark_sidebar             | `true`   | Sidebar like windows like `NvimTree` get a darker background                                                                                                    |
-| dark_float               | `false`  | Float windows like the lsp diagnostics windows get a darker background.                                                                                         |
-| colors                   | `{}`     | You can override specific color groups to use other groups or a hex color                                                                                       |
+| Option                   | Default  | Description                                                                                                                                     |
+| ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| theme_style              | `dark`   | Set theme variant (options: `dark`/`dark_default`/`dimmed`/`light`/`light_default`)                                                             |
+| comment_style            | `italic` | Highlight style for comments (check `:help highlight-args` for options)                                                                         |
+| keyword_style            | `italic` | Highlight style for keywords (check `:help highlight-args` for options)                                                                         |
+| function_style           | `NONE`   | Highlight style for functions (check `:help highlight-args` for options)                                                                        |
+| variable_style           | `NONE`   | Highlight style for variables and identifiers (check `:help highlight-args` for options)                                                        |
+| msg_area_style           | `NONE`   | Highlight style for messages and cmdline (check `:help highlight-args` for options)                                                             |
+| transparent              | `false`  | Enable this to disable setting the background color                                                                                             |
+| hide_end_of_buffer       | `true`   | Enabling this option, will hide filler lines (~) after the end of the buffer                                                                    |
+| hide_inactive_statusline | `true`   | Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine**. |
+| sidebars                 | `{}`     | Set a darker background on sidebar-like windows. For example: `{"qf", "vista_kind", "terminal", "packer"}`                                      |
+| dark_sidebar             | `true`   | Sidebar like windows like `NvimTree` get a darker background                                                                                    |
+| dark_float               | `false`  | Float windows like the lsp diagnostics windows get a darker background.                                                                         |
+| colors                   | `{}`     | You can override specific color groups to use other groups or a hex color                                                                       |
 
 ```vim
 " Example config in VimScript

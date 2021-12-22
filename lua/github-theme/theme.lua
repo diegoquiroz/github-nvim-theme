@@ -15,7 +15,7 @@ function M.setup(config)
   theme.colors = colors.setup(config)
   local c = theme.colors
 
-  theme.base = { -- luacheck: ignore
+  theme.base = {
     ColorColumn = {bg = c.bg_visual}, -- used for the columns set with 'colorcolumn'
     Conceal = {fg = c.fg_gutter}, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor = {fg = c.bg, bg = c.fg}, -- character under the cursor
@@ -161,6 +161,11 @@ function M.setup(config)
     LspDiagnosticsUnderlineWarning = {style = "undercurl", sp = c.warning}, -- Used to underline "Warning" diagnostics
     LspDiagnosticsUnderlineInformation = {style = "undercurl", sp = c.info}, -- Used to underline "Information" diagnostics
     LspDiagnosticsUnderlineHint = {style = "undercurl", sp = c.hint}, -- Used to underline "Hint" diagnostics
+
+    LspDiagnosticsError = {fg = c.error},
+    LspDiagnosticsWarning = {fg = c.warning},
+    LspDiagnosticsInformation = {fg = c.info},
+    LspDiagnosticsHint = {fg = c.hint},
 
     DiagnosticError = {link = "LspDiagnosticsDefaultError"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     DiagnosticWarn = {link = "LspDiagnosticsDefaultWarning"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
@@ -382,14 +387,7 @@ function M.setup(config)
     TelescopeBorder = {fg = c.border},
     TelescopePromptPrefix = {fg = c.fg},
     TelescopeMatching = {fg = c.syntax.constant, style = "bold"},
-    TelescopePreviewPipe = {fg = c.bright_yellow},
-    TelescopePreviewRead = {fg = c.bright_yellow},
-    TelescopePreviewSize = {fg = c.bright_green},
-    TelescopePreviewUser = {fg = c.bright_yellow},
-    TelescopePreviewBlock = {fg = c.bright_yellow},
-    TelescopePreviewGroup = {fg = c.bright_yellow},
-    TelescopePreviewWrite = {fg = c.bright_magenta},
-    TelescopePreviewSticky = {fg = c.bright_cyan},
+    TelescopeMultiSelection = {fg = c.syntax.comment},
 
     -- NvimTree
     NvimTreeNormal = {fg = c.fg_light, bg = c.bg_sidebar},
@@ -406,11 +404,6 @@ function M.setup(config)
     NvimTreeSymlink = {fg = c.magenta},
     NvimTreeFolderName = {fg = c.fg_light},
     NvimTreeOpenedFolderName = {fg = c.fg_light, style = "bold"},
-
-    LspDiagnosticsError = {fg = c.error},
-    LspDiagnosticsWarning = {fg = c.warning},
-    LspDiagnosticsInformation = {fg = c.info},
-    LspDiagnosticsHint = {fg = c.hint},
 
     -- Git Default
     gitcommitSummary = {fg = c.syntax.tag},
@@ -443,6 +436,12 @@ function M.setup(config)
     -- BufferLine
     BufferLineIndicatorSelected = {fg = c.blue},
     BufferLineFill = {bg = c.bg2},
+
+    -- Hop
+    HopNextKey = {fg = c.magenta, style = "bold"},
+    HopNextKey1 = {fg = c.blue, style = "bold"},
+    HopNextKey2 = {fg = util.darken(c.bright_blue, 0.8)},
+    HopUnmatched = {fg = c.fg_dark},
 
     -- ALE
     ALEWarningSign = {fg = c.warning},
@@ -545,26 +544,49 @@ function M.setup(config)
     NotifyWARNBody = {fg = util.lighten(c.warning, 0.1)},
     NotifyINFOBody = {fg = util.lighten(c.green, 0.1)},
     NotifyDEBUGBody = {link = "NotifyDEBUGTitle"},
-    NotifyTRACEBody = {fg = util.lighten(c.bright_magenta, 0.1)}
+    NotifyTRACEBody = {fg = util.lighten(c.bright_magenta, 0.1)},
+
+    -- Coc
+    CocErrorSign = {link = "ErrorMsg"},
+    CocWarningSign = {link = "WarningMsg"},
+    CocInfoSign = {link = "DiagnosticInfo"},
+    CocHintSign = {link = "DiagnosticHint"},
+    CocErrorFloat = {link = "ErrorMsg"},
+    CocWarningFloat = {link = "WarningMsg"},
+    CocInfoFloat = {link = "DiagnosticInfo"},
+    CocHintFloat = {link = "DiagnosticHint"},
+    CocDiagnosticsError = {link = "ErrorMsg"},
+    CocDiagnosticsWarning = {link = "WarningMsg"},
+    CocDiagnosticsInfo = {link = "DiagnosticInfo"},
+    CocDiagnosticsHint = {link = "DiagnosticHint"},
+    CocSelectedText = {fg = c.red},
+    CocCodeLens = {fg = c.fg_dark},
+
+    CocErrorHighlight = {link = "LspDiagnosticsUnderlineError"},
+    CocWarningHighlight = {link = "LspDiagnosticsUnderlineWarning"},
+    CocInfoHighlight = {link = "LspDiagnosticsUnderlineInformation"},
+    CocHintHighlight = {link = "LspDiagnosticsUnderlineHint"},
+
+    CocHighlightText = {link = "Visual"},
+    CocUnderline = {style = "undercurl"}
   }
 
   theme.defer = {}
 
   if config.hide_inactive_statusline then
-    local inactive = {style = "underline", bg = c.bg, fg = c.bg, sp = c.bg_visual}
+    local inactive
 
     -- StatusLine
+    inactive = {style = "underline", bg = c.bg, fg = c.bg, sp = c.bg_visual}
     theme.base.StatusLineNC = inactive
 
+    -- LuaLine
     if vim.o.statusline ~= nil and string.find(vim.o.statusline, "lualine") then
       -- Fix VertSplit & StatusLine crossover when lualine is active
       -- https://github.com/hoob3rt/lualine.nvim/issues/274
-      theme.base.StatusLine = {bg = c.bg}
-
-      -- LuaLine
-      for _, section in pairs({"a", "b", "c"}) do
-        theme.defer["lualine_" .. section .. "_inactive"] = inactive
-      end
+      inactive = {bg = c.bg2}
+      theme.base.StatusLine = inactive
+      theme.base.StatusLineNC = inactive
     end
   end
 

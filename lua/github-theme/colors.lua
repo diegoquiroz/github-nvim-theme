@@ -539,14 +539,15 @@ function M.setup(config)
 
   -- EndOfBuffer
   colors.sidebar_eob = config.dark_sidebar and colors.bg2 or colors.bg
-  colors.sidebar_eob = config.hide_end_of_buffer and colors.sidebar_eob or colors.fg_light
-  colors.eob = config.hide_end_of_buffer and colors.bg or colors.fg_light
+  colors.sidebar_eob = config.hide_end_of_buffer and colors.sidebar_eob or
+                           colors.fg_gutter
+  colors.eob = config.hide_end_of_buffer and colors.bg or colors.fg_gutter
 
   -- Statusline
   colors.bg_statusline = colors.blue
   colors.fg_statusline = colors.bg
-  colors.bg_nc_statusline = colors.bg
-  colors.fg_nc_statusline = util.darken(colors.fg, 0.5)
+  colors.bg_nc_statusline = colors.bg2
+  colors.fg_nc_statusline = util.darken(colors.fg, 0.3)
 
   -- Search
   colors.fg_search = colors.none
@@ -566,7 +567,7 @@ function M.setup(config)
   colors.bg_sidebar = config.transparent and colors.none or colors.bg_sidebar
   colors.bg_float = config.dark_float and colors.bg2 or colors.bg
 
-  -- lualine
+  -- Lualine
 
   --- create lualine group colors for github-theme
   ---@param color string
@@ -597,10 +598,11 @@ function M.setup(config)
     command = tint_lualine_group(colors.bright_magenta),
     visual = tint_lualine_group(colors.yellow),
     replace = tint_lualine_group(colors.red),
+    terminal = tint_lualine_group(colors.orange),
     inactive = {
-      a = {bg = colors.bg, fg = colors.fg_nc_statusline},
-      b = {bg = colors.bg, fg = colors.fg_nc_statusline},
-      c = {bg = colors.bg, fg = colors.fg_nc_statusline}
+      a = {bg = colors.bg_nc_statusline, fg = colors.fg_nc_statusline},
+      b = {bg = colors.bg_nc_statusline, fg = colors.fg_nc_statusline},
+      c = {bg = colors.bg_nc_statusline, fg = colors.fg_nc_statusline}
     }
   }
 
