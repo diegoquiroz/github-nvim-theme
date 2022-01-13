@@ -1,28 +1,26 @@
-local util = require("github-theme.util")
-local config_module = require("github-theme.config")
-
-local M = {}
+local palette = require('github-theme.palette')
+local util = require('github-theme.util')
 
 ---Generate github theme for kitty terminal.
----@param config github-theme.Config
-function M.kitty(config)
-  config = config or config_module.config
-  local colors = require("github-theme.colors").setup(config)
+---@param cfg gt.ConfigSchema
+return function(cfg)
+  local colors = palette.get_palette(cfg.theme_style)
 
-  local kitty = util.template([[
+  local kitty = util.template(
+    [[
 # github colors for Kitty
 
 background ${bg}
-foreground ${term_fg}
+foreground ${fg_term}
 selection_background ${bg_visual_selection}
-selection_foreground ${term_fg}
-url_color ${term_fg}
+selection_foreground ${fg_term}
+url_color ${fg_term}
 cursor ${cursor}
 
 # Tabs
 active_tab_background ${blue}
 active_tab_foreground ${bg2}
-inactive_tab_background ${term_fg}
+inactive_tab_background ${fg_term}
 inactive_tab_foreground ${bg2}
 
 # Windows Border
@@ -47,13 +45,13 @@ color11 ${bright_yellow}
 color12 ${bright_blue}
 color13 ${bright_magenta}
 color14 ${bright_cyan}
-color15 ${term_fg}
+color15 ${fg_term}
 
 # extended colors
 color16 ${bright_yellow}
 color17 ${bright_red}
-]], colors)
+]],
+    colors
+  )
   return kitty
 end
-
-return M

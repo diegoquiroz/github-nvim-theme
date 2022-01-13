@@ -1,26 +1,26 @@
-local util = require("github-theme.util")
-local config_module = require("github-theme.config")
-
-local M = {}
+local palette = require('github-theme.palette')
+local util = require('github-theme.util')
 
 ---Generate github theme for Alacritty terminal.
----@param config github-theme.Config
-function M.alacritty(config)
-  config = config or config_module.config
-  local colors = require("github-theme.colors").setup(config)
+---@param cfg gt.ConfigSchema
+return function(cfg)
+  local colors = palette.get_palette(cfg.theme_style)
 
   local alacritty_colors = {}
   for k, v in pairs(colors) do
-    if type(v) == "string" then alacritty_colors[k] = v:gsub("^#", "0x") end
+    if type(v) == 'string' then
+      alacritty_colors[k] = v:gsub('^#', '0x')
+    end
   end
 
-  local alacritty = util.template([[
+  local alacritty = util.template(
+    [[
 # github Alacritty Colors
 colors:
   # Default colors
   primary:
     background: '${bg}'
-    foreground: '${term_fg}'
+    foreground: '${fg_term}'
 
   # Normal colors
   normal:
@@ -31,7 +31,7 @@ colors:
     blue:    '${blue}'
     magenta: '${magenta}'
     cyan:    '${cyan}'
-    white:   '${term_fg}'
+    white:   '${fg_term}'
 
   # Bright colors
   bright:
@@ -42,14 +42,14 @@ colors:
     blue:    '${bright_blue}'
     magenta: '${bright_magenta}'
     cyan:    '${cyan}'
-    white:   '${term_fg}'
+    white:   '${fg_term}'
 
   indexed_colors:
     - { index: 16, color: '${orange}' }
     - { index: 17, color: '${bright_red}' }
-]], alacritty_colors)
+]],
+    alacritty_colors
+  )
 
   return alacritty
 end
-
-return M
