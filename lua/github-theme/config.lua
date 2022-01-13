@@ -1,65 +1,44 @@
----@class github-theme.Config
-local config
+local vim_config = require('github-theme.config.vim_config')
+local default_config = require('github-theme.config.default')
 
--- shim vim for kitty and other generators
-vim = vim or {g = {}, o = {}}
-local key_prefix = "github_"
+---@class gt.Config
+---@field schema gt.ConfigSchema
+local config = {}
 
-local function opt(key, default)
-  key = key_prefix .. key
-  if vim.g[key] == nil then
-    vim.g[key] = default
-    return default
-  else
-    if vim.g[key] == 1 then
-      return true
-    elseif vim.g[key] == 0 then
-      return false
-    else
-      return vim.g[key]
-    end
-  end
-end
+---Accessing global config using vim.g.github_* will help in autocompletion.
 
-config = {
-  theme_style = opt("theme_style", "dark"),
-  dark_float = opt("dark_float", false),
-  dark_sidebar = opt("dark_sidebar", true),
-  transparent = opt("transparent", false),
-  comment_style = opt("comment_style", "italic"),
-  keyword_style = opt("keyword_style", "italic"),
-  function_style = opt("function_style", "NONE"),
-  variable_style = opt("variable_style", "NONE"),
-  msg_area_style = opt("msg_area_style", "NONE"),
-  hide_inactive_statusline = opt("hide_inactive_statusline", true),
-  hide_end_of_buffer = opt("hide_end_of_buffer", true),
-  sidebars = opt("sidebars", {}),
-  colors = opt("colors", {}),
-  dev = opt("dev", false),
-  transform_colors = false
+config.schema = {
+  colors = vim_config.get(vim.g.github_colors, default_config.colors),
+  comment_style = vim_config.get(vim.g.github_comment_style, default_config.comment_style),
+  dark_float = vim_config.get(vim.g.github_dark_float, default_config.dark_float),
+  dark_sidebar = vim_config.get(vim.g.github_dark_sidebar, default_config.dark_sidebar),
+  dev = vim_config.get(vim.g.github_dev, default_config.dev),
+  function_style = vim_config.get(vim.g.github_function_style, default_config.function_style),
+  hide_end_of_buffer = vim_config.get(vim.g.github_hide_end_of_buffer, default_config.hide_end_of_buffer),
+  hide_inactive_statusline = vim_config.get(vim.g.github_hide_inactive_statusline, default_config.hide_inactive_statusline),
+  keyword_style = vim_config.get(vim.g.github_keyword_style, default_config.keyword_style),
+  msg_area_style = vim_config.get(vim.g.github_msg_area_style, default_config.msg_area_style),
+  overrides = vim_config.get(vim.g.github_overrides, default_config.overrides),
+  sidebars = vim_config.get(vim.g.github_sidebars, default_config.sidebars),
+  theme_style = vim_config.get(vim.g.github_theme_style, default_config.theme_style),
+  transparent = vim_config.get(vim.g.github_transparent, default_config.transparent),
+  variable_style = vim_config.get(vim.g.github_variable_style, default_config.variable_style),
 }
 
---  `set background=light` for these themes
-local light_background = {light = true, light_default = true}
-
----@param user_config github-theme.Config
-local function apply_configuration(user_config)
+---Override user's configuration
+---@param user_config gt.ConfigSchema
+config.apply_configuration = function(user_config)
   for key, value in pairs(user_config) do
     if value ~= nil then
-      if config[key] ~= nil then
+      if config.schema[key] ~= nil then
         -- override value
-        config[key] = value
-        vim.g[key_prefix .. key] = value
-
-        -- background set
-        if key == "theme_style" then
-          if light_background[config.theme_style] then vim.o.background = "light" end
-        end
+        config.schema[key] = value
+        vim_config.set(key, value)
       else
-        error("projekt0n/github-nvim-theme: Config " .. key .. " does not exist") -- luacheck: ignore
+        error('config ' .. key .. ' does not exist') -- luacheck: ignore
       end
     end
   end
 end
 
-return {config = config, apply_configuration = apply_configuration}
+return config

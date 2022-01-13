@@ -7,13 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [v0.0.4] - 11 Jan 2022
+
 ### Added
 
+- Github Dark ColorBlind(Beta) added 🎉 #96
+- Github Light ColorBlind(Beta) added 🎉 #96
 - Dark background color for inactive statusline and lualine
 - Minimal look (`hide_inactive_statusline`) removed from lualine
 - `terminal` highlight added for lualine
 - Added basic [coc.nvim](https://github.com/neoclide/coc.nvim) highlights #141
 - define global in project `luarc` config file.
+- Removed unnecessary defer function & highlights
+- allow customizing highlight group ful1e5/onedark.nvim#91
+- refactor: Colors moved to `palette` module
+- `types` module initiate
+- proper color docs with `gt.ColorPalette` type
+- Support `ConfigSchema` type with all modules
+- refactor: config module
+- feat: `githooks` init
+- formatter changed `LuaFormatter`-> `StyLua`
+- chore: removed unnecessary module (`hsluv.lua`)
+- feat: luadoc and type added inside `util.lua`
+- feat: TerminalConf type added in `types` module
+- refactor: modules export & typing
+- refactor: terminal themes moved 'extras' -> 'terminal'
+- feat: Apply highlight's style using `types.HighlightStyle` type
+- refactor: color name changed 'term_fg' -> 'fg_term'
+- feat: suggest config in `vim.g` autocompletion
+- feat: reuse common color in palettes
+- docs: team account added in funding
 
 ### Fixes
 
@@ -21,6 +44,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix #144 - Repatch removed hop.nvim highlights
 - Fix #133 - highlights of inactive tabline in lualine plugin
 - inherit `eof` color from `fg_gutter` #150
+- cleanup: _getColor()_ from `util` module
+- fix #156 - highlight added for `GitSignsCurrentLineBlame`
+- refactor: color renamed `lsp.referenceText` -> `lsp.ref_txt`
+- `TabLineSel` highlight link with `PmenuSel`
+- Fixed `iterm` theme generation
+- fix: lualine theme
 
 ## [v0.0.3] - 09 Dec 2021
 
@@ -131,7 +160,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release 🎊
 
-[unreleased]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.3...main
+[unreleased]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.4...main
+[v0.0.4]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.4...v0.0.3
 [v0.0.3]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.3...v0.0.2
 [v0.0.2]: https://github.com/projekt0n/github-nvim-theme/compare/v0.0.2...v0.0.1
 [v0.0.1]: https://github.com/projekt0n/github-nvim-theme/tree/v0.0.1

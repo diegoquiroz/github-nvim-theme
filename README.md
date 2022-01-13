@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://imgur.com/OLRFrjD.png" alt="github-nvim-theme" />
+  <img src="https://imgur.com/S6SlCiV.png" alt="github-nvim-theme" />
 </p>
 
 ### Status
@@ -9,42 +9,12 @@
 
 ## Features
 
-- supports the latest Neovim 0.5 features like TreeSitter and LSP
-- minimal inactive statusline
-- vim terminal colors
-- darker background for sidebar-like windows
-- color configs for [kitty](https://sw.kovidgoyal.net/kitty/conf.html?highlight=include), [iTerm2](https://iterm2.com/), [Konsole](https://konsole.kde.org/), [tmux](https://github.com/tmux/tmux/wiki) and [Alacritty](https://github.com/alacritty/alacritty)
+- Supports the latest Neovim 0.5 features like TreeSitter and LSP
+- Minimal inactive statusline (only work with **Vim's Default StatusLine**)
+- Vim terminal colors
+- Darker background for sidebar-like windows
+- Color configs for [kitty](https://sw.kovidgoyal.net/kitty/conf.html?highlight=include), [iTerm2](https://iterm2.com/), [Konsole](https://konsole.kde.org/), [tmux](https://github.com/tmux/tmux/wiki) and [Alacritty](https://github.com/alacritty/alacritty)
 - Most elegant [**lualine** theme](./LUALINE.md#screenshots)
-
-## Terminal Themes (Extras)
-
-> To generate the configs `make extra` or `:luafile lua/github-theme/extra/init.lua`
-
-Extra color configs for **kitty**, **iTerm**, **Konsole**, **tmux** and **Alacritty** can be found in [extras](extras/) directory. To use them, refer to their respective documentation.
-
-## Plugin Support
-
-- [Builtin lsp diagnostics](https://neovim.io/doc/user/lsp.html)
-- [ale](https://github.com/dense-analysis/ale)
-- [circles.nvim](https://github.com/projekt0n/circles.nvim)
-- [coc.nvim](https://github.com/neoclide/coc.nvim)
-- [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [lsp-trouble.nvim](https://github.com/folke/lsp-trouble.nvim)
-- [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [neogit](https://github.com/TimUntersberger/neogit)
-- [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [nvim-compe](https://github.com/hrsh7th/nvim-compe)
-- [nvim-notify](https://github.com/rcarriga/nvim-notify)
-- [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
-- [which-key.nvim](https://github.com/folke/which-key.nvim)
 
 ## Requirements
 
@@ -82,21 +52,24 @@ require('github-theme').setup()
 
 ## Configuration
 
-| Option                   | Default  | Description                                                                                                                                     |
-| ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| theme_style              | `dark`   | Set theme variant (options: `dark`/`dark_default`/`dimmed`/`light`/`light_default`)                                                             |
-| comment_style            | `italic` | Highlight style for comments (check `:help highlight-args` for options)                                                                         |
-| keyword_style            | `italic` | Highlight style for keywords (check `:help highlight-args` for options)                                                                         |
-| function_style           | `NONE`   | Highlight style for functions (check `:help highlight-args` for options)                                                                        |
-| variable_style           | `NONE`   | Highlight style for variables and identifiers (check `:help highlight-args` for options)                                                        |
-| msg_area_style           | `NONE`   | Highlight style for messages and cmdline (check `:help highlight-args` for options)                                                             |
-| transparent              | `false`  | Enable this to disable setting the background color                                                                                             |
-| hide_end_of_buffer       | `true`   | Enabling this option, will hide filler lines (~) after the end of the buffer                                                                    |
-| hide_inactive_statusline | `true`   | Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine**. |
-| sidebars                 | `{}`     | Set a darker background on sidebar-like windows. For example: `{"qf", "vista_kind", "terminal", "packer"}`                                      |
-| dark_sidebar             | `true`   | Sidebar like windows like `NvimTree` get a darker background                                                                                    |
-| dark_float               | `false`  | Float windows like the lsp diagnostics windows get a darker background.                                                                         |
-| colors                   | `{}`     | You can override specific color groups to use other groups or a hex color                                                                       |
+| Option                   | Default    | Description                                                                                                                                     |
+| ------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| colors                   | `{}`       | You can override specific color groups to use other groups or a hex color                                                                       |
+| comment_style            | `italic`   | Highlight style for comments (check `:help highlight-args` for options)                                                                         |
+| dark_float               | `false`    | Float windows like the lsp diagnostics windows get a darker background.                                                                         |
+| dark_sidebar             | `true`     | Sidebar like windows like `NvimTree` get a darker background                                                                                    |
+| function_style           | `NONE`     | Highlight style for functions (check `:help highlight-args` for options)                                                                        |
+| hide_end_of_buffer       | `true`     | Enabling this option, will hide filler lines (~) after the end of the buffer                                                                    |
+| hide_inactive_statusline | `true`     | Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine**. |
+| keyword_style            | `italic`   | Highlight style for keywords (check `:help highlight-args` for options)                                                                         |
+| msg_area_style           | `NONE`     | Highlight style for messages and cmdline (check `:help highlight-args` for options)                                                             |
+| overrides                | `function` | Override specific highlight groups. The function accept colors as argument.                                                                     |
+| sidebars                 | `{}`       | Set a darker background on sidebar-like windows. For example: `{"qf", "vista_kind", "terminal", "packer"}`                                      |
+| theme_style              | `dark`     | Set theme variant (options: `dark`/`dimmed`/`dark_default`/`dark_colorblind`/`light`/`light_default`/`light_colorblind`)                        |
+| transparent              | `false`    | Enable this to disable setting the background color                                                                                             |
+| variable_style           | `NONE`     | Highlight style for variables and identifiers (check `:help highlight-args` for options)                                                        |
+
+### Using `vim`
 
 ```vim
 " Example config in VimScript
@@ -114,6 +87,8 @@ let g:github_colors = {
 colorscheme github_dark
 ```
 
+### Using `lua`
+
 ```lua
 -- Example config in Lua
 require("github-theme").setup({
@@ -122,13 +97,37 @@ require("github-theme").setup({
   sidebars = {"qf", "vista_kind", "terminal", "packer"},
 
   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  colors = {hint = "orange", error = "#ff0000"}
+  colors = {hint = "orange", error = "#ff0000"},
+
+  -- Overwrite the highlight groups
+  overrides = function(c)
+    return {
+      htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
+      DiagnosticHint = {link = "LspDiagnosticsDefaultHint"},
+      -- this will remove the highlight groups
+      TSField = {},
+    }
+  end
 })
 ```
 
 ### Lualine Support
 
-check [LUALINE.md](./LUALINE.md)
+**Note:** `hide_inactive_statusline` option is deprecated for lualine. That means it does not force the underline style to StatusLineNC highlight.
+
+Installation docs and screenshots at [LUALINE.md](./LUALINE.md).
+
+## Terminal Themes
+
+> To generate the configs `make terminal` or `:luafile lua/github-theme/terminal/init.lua`
+
+Extra color configs for **kitty**, **iTerm**, **Konsole**, **tmux** and **Alacritty** can be found in [terminal](terminal/) directory. To use them, refer to their respective documentation.
+
+- kitty - [./terminal/kitty](https://github.com/projekt0n/github-nvim-theme/tree/main/terminal/kitty)
+- iTerm - [./terminal/iterm](https://github.com/projekt0n/github-nvim-theme/tree/main/terminal/iterm)
+- Konsole - [./terminal/konsole](https://github.com/projekt0n/github-nvim-theme/tree/main/terminal/konsole)
+- tmux - [./terminal/tmux](https://github.com/projekt0n/github-nvim-theme/tree/main/terminal/tmux)
+- Alacritty - [./terminal/alacritty](https://github.com/projekt0n/github-nvim-theme/tree/main/terminal/alacritty)
 
 ### Making `undercurls` work properly in **Tmux**
 
@@ -141,19 +140,37 @@ set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 ```
 
-## Reference
+## Plugin Support
 
-- [primer/github-vscode-theme](https://github.com/primer/github-vscode-theme)
-- [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [monsonjeremy/onedark.nvim](https://github.com/monsonjeremy/onedark.nvim)
+- [Builtin lsp diagnostics](https://neovim.io/doc/user/lsp.html)
+- [dense-analysis/ale](https://github.com/dense-analysis/ale)
+- [projekt0n/circles.nvim](https://github.com/projekt0n/circles.nvim)
+- [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
+- [glepnir/dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [folke/lsp-trouble.nvim](https://github.com/folke/lsp-trouble.nvim)
+- [glepnir/lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [TimUntersberger/neogit](https://github.com/TimUntersberger/neogit)
+- [akinsho/nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
+- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [hrsh7th/nvim-compe](https://github.com/hrsh7th/nvim-compe)
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
+- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [airblade/vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+- [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
 
-## 📺 Screenshot
+## 📺 Screenshots
 
-- Font: [Ubuntu Mono](https://design.ubuntu.com/font/)
+- Font: [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
 - Terminal: [kitty](https://sw.kovidgoyal.net/kitty)
-- Icon: [circles.nvim](https://github.com/projekt0n/circles.nvim)
+- Icon: [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 - StatusLine: **Default**. [dotfiles/nvim/.config/nvim/lua/options.lua#L19-L30](https://github.com/ful1e5/dotfiles/blob/a2777f85b104622dd82f4adfc6ad032e3ff074bf/nvim/.config/nvim/lua/options.lua#L19-L30)
-- dotfiles: [dotfiles](https://github.com/ful1e5/dotfiles)
+- dotfiles: [ful1e5/dotfiles/nvim](https://github.com/ful1e5/dotfiles/tree/main/nvim/.config/nvim)
 
 ### Theme Styles
 
@@ -173,26 +190,7 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/wsST2ZB.png" alt="github_dark" />
-</p>
-
-#### Dark Default
-
-```vim
-" VimScript
-colorscheme github_dark_default
-```
-
-```lua
--- Lua
-require("github-theme").setup({
-  theme_style = "dark_default",
-  -- other config
-})
-```
-
-<p align="center">
-  <img src="https://imgur.com/pNJDMft.png" alt="github_dark_default" />
+  <img src="https://imgur.com/XWxKWc8.png" alt="github_dark" />
 </p>
 
 #### Dimmed
@@ -211,7 +209,45 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/LLp5qnT.png" alt="github_dimmed" />
+  <img src="https://imgur.com/lMk4ifs.png" alt="github_dimmed" />
+</p>
+
+#### Dark Default
+
+```vim
+" VimScript
+colorscheme github_dark_default
+```
+
+```lua
+-- Lua
+require("github-theme").setup({
+  theme_style = "dark_default",
+  -- other config
+})
+```
+
+<p align="center">
+  <img src="https://imgur.com/ZfZcBGN.png" alt="github_dark_default" />
+</p>
+
+#### Dark Colorblind (Beta)
+
+```vim
+" VimScript
+colorscheme github_dark_colorblind
+```
+
+```lua
+-- Lua
+require("github-theme").setup({
+  theme_style = "dark_colorblind",
+  -- other config
+})
+```
+
+<p align="center">
+  <img src="https://imgur.com/OIXgRL4.png" alt="github_dark_colorblind" />
 </p>
 
 #### Light
@@ -230,7 +266,7 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/yXEj746.png" alt="github_light" />
+  <img src="https://imgur.com/OPwBDI4.png" alt="github_light" />
 </p>
 
 #### Light Default
@@ -249,7 +285,26 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/fykVFCr.png" alt="github_light_default" />
+  <img src="https://imgur.com/r9uPo5B.png" alt="github_light_default" />
+</p>
+
+#### Light Colorblind (Beta)
+
+```vim
+" VimScript
+colorscheme github_light_colorblind
+```
+
+```lua
+-- Lua
+require("github-theme").setup({
+  theme_style = "light_colorblind",
+  -- other config
+})
+```
+
+<p align="center">
+  <img src="https://imgur.com/fL4ZOUg.png" alt="github_light_colorblind" />
 </p>
 
 ### Syntax Styles
@@ -257,7 +312,7 @@ require("github-theme").setup({
 #### Default
 
 <p align="center">
-  <img src="https://imgur.com/GbemreO.png" alt="github_default_syntax" />
+  <img src="https://imgur.com/V0DsNa0.png" alt="github_default_syntax" />
 </p>
 
 #### Normal
@@ -282,7 +337,7 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/qrJwUDb.png" alt="github_normal_syntax" />
+  <img src="https://imgur.com/aRDXkWp.png" alt="github_normal_syntax" />
 </p>
 
 #### Italic
@@ -307,7 +362,7 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/TK6HEA4.png" alt="github_italic_syntax" />
+  <img src="https://imgur.com/5wr3dyQ.png" alt="github_italic_syntax" />
 </p>
 
 ### Minimal config
@@ -326,13 +381,13 @@ require("github-theme").setup({
 ```
 
 <p align="center">
-  <img src="https://imgur.com/TyaLR4n.png" alt="github_minimal" />
+  <img src="https://imgur.com/rAsEukW.png" alt="github_minimal" />
 </p>
 
 ### Telescope
 
 <p align="center">
-  <img src="https://imgur.com/vVFjJad.png" alt="github_telescope" />
+  <img src="https://imgur.com/XX7tixL.png" alt="github_telescope" />
 </p>
 
 ## Contributing

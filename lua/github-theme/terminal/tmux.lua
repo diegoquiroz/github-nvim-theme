@@ -1,15 +1,13 @@
-local util = require("github-theme.util")
-local config_module = require("github-theme.config")
-
-local M = {}
+local palette = require('github-theme.palette')
+local util = require('github-theme.util')
 
 ---Generate github theme for tmux.
----@param config github-theme.Config
-function M.tmux(config)
-  config = config or config_module.config
-  local colors = require("github-theme.colors").setup(config)
+---@param cfg gt.ConfigSchema
+return function(cfg)
+  local colors = palette.get_palette(cfg.theme_style)
 
-  local tmux = util.template([[
+  local tmux = util.template(
+    [[
 #!/usr/bin/env bash
 
 # Github colors for Tmux
@@ -41,9 +39,9 @@ setw -g window-status-separator ""
 setw -g window-status-style "${none},fg=${bg},bg=${bg2}"
 setw -g window-status-format "#[fg=${bg2},bg=${bg2},nobold,nounderscore,noitalics]#[fg=${fg_dark},bg=${bg2},nobold,nounderscore,noitalics] #I  #W #F #[fg=${bg2},bg=${bg2},nobold,nounderscore,noitalics]"
 setw -g window-status-current-format "#[fg=${bg2},bg=${fg_gutter},nobold,nounderscore,noitalics]#[fg=${black},bg=${fg_gutter},bold] #I  #W #F #[fg=${fg_gutter},bg=${bg2},nobold,nounderscore,noitalics]"
-]], colors)
+]],
+    colors
+  )
 
   return tmux
 end
-
-return M
